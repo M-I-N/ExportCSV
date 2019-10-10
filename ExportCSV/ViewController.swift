@@ -12,7 +12,13 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+//        StorageController.shared.addData(string: "Zarrar, 9, 3, 3, 3, 3, 3 MAY 2019, 60")
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            if let dataString = StorageController.shared.readCSVData() {
+                print(dataString)
+            }
+        }
     }
 
 

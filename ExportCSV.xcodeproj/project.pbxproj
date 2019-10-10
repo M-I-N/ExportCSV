@@ -13,6 +13,7 @@
 		AF4329B6234F25E1003AF195 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF4329B4234F25E1003AF195 /* Main.storyboard */; };
 		AF4329B8234F25E3003AF195 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF4329B7234F25E3003AF195 /* Assets.xcassets */; };
 		AF4329BB234F25E3003AF195 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF4329B9234F25E3003AF195 /* LaunchScreen.storyboard */; };
+		AF4329C3234F2659003AF195 /* StorageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4329C2234F2659003AF195 /* StorageController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		AF4329B7234F25E3003AF195 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AF4329BA234F25E3003AF195 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AF4329BC234F25E3003AF195 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AF4329C2234F2659003AF195 /* StorageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				AF4329AE234F25E1003AF195 /* AppDelegate.swift */,
 				AF4329B0234F25E1003AF195 /* SceneDelegate.swift */,
 				AF4329B2234F25E1003AF195 /* ViewController.swift */,
+				AF4329C2234F2659003AF195 /* StorageController.swift */,
 				AF4329B4234F25E1003AF195 /* Main.storyboard */,
 				AF4329B7234F25E3003AF195 /* Assets.xcassets */,
 				AF4329B9234F25E3003AF195 /* LaunchScreen.storyboard */,
@@ -141,6 +144,7 @@
 				AF4329B3234F25E1003AF195 /* ViewController.swift in Sources */,
 				AF4329AF234F25E1003AF195 /* AppDelegate.swift in Sources */,
 				AF4329B1234F25E1003AF195 /* SceneDelegate.swift in Sources */,
+				AF4329C3234F2659003AF195 /* StorageController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
