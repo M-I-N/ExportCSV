@@ -12,7 +12,7 @@ class StorageController {
     static let shared = StorageController()
     private init() { }
 
-    var documentsDirectory: URL {
+    private var documentsDirectory: URL {
         FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
     }
 
@@ -30,8 +30,8 @@ class StorageController {
         }
     }
 
-    func addData(string: String) {
-        if let previousString = readCSVData() {
+    func addOrMergeIntoCSVStorage(string: String) {
+        if let previousString = readDataFromCSVStorage() {
             let merged = [previousString, string].joined(separator: "\n")
             do {
                 try merged.write(to: CSVFileURL, atomically: true, encoding: .utf8)
@@ -47,7 +47,7 @@ class StorageController {
         }
     }
 
-    func readCSVData() -> String? {
+    private func readDataFromCSVStorage() -> String? {
         do {
             let string = try String(contentsOf: CSVFileURL)
             return string
