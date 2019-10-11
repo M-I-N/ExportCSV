@@ -31,10 +31,19 @@ class StorageController {
     }
 
     func addData(string: String) {
-        do {
-            try string.write(to: CSVFileURL, atomically: false, encoding: .utf8)
-        } catch {
-            print(error)
+        if let previousString = readCSVData() {
+            let merged = [previousString, string].joined(separator: "\n")
+            do {
+                try merged.write(to: CSVFileURL, atomically: true, encoding: .utf8)
+            } catch {
+                print(error)
+            }
+        } else {
+            do {
+                try string.write(to: CSVFileURL, atomically: true, encoding: .utf8)
+            } catch {
+                print(error)
+            }
         }
     }
 
