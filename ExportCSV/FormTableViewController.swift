@@ -95,31 +95,32 @@ class FormTableViewController: UITableViewController {
         timerValueLabel.text = sender.value.formattedForDisplay
     }
 
-    @IBAction func shareButtonDidTap(_ sender: UIBarButtonItem) {
+    private func saveDataInCSVStorage() {
         if let name = nameTextField.text, let age = ageValueLabel.text, let scissorValue = scissorValueLabel.text,
             let pencilValue = pencilValueLabel.text, let pincherValue = pincherValueLabel.text,
             let buttonValue = buttonValueLabel.text, let date = dateValueLabel.text, let timer = timerValueLabel.text {
             let composedString = [name, age, scissorValue, pencilValue, pincherValue, buttonValue, date, timer].joined(separator: ", ")
             print(composedString)
-
+            
             StorageController.shared.addOrMergeIntoCSVStorage(string: composedString)   //FIXME: This should be done when saving is needed
-
-            if MFMailComposeViewController.canSendMail() {
-                do {
-                    let fileURL = StorageController.shared.CSVFileURL
-                    let data = try Data(contentsOf: fileURL)
-                    let mailViewController = MFMailComposeViewController()
-                    mailViewController.mailComposeDelegate = self
-                    mailViewController.setSubject("ZOTTZ OT Data")
-                    mailViewController.addAttachmentData(data, mimeType: "text/plain", fileName: fileURL.lastPathComponent)
-                    present(mailViewController, animated: true)
-                } catch {
-                    print("Couldn't initialize data")
-                }
-            } else {
-                print("Mailing not supported")
+        }
+    }
+    
+    @IBAction func shareButtonDidTap(_ sender: UIBarButtonItem) {
+        if MFMailComposeViewController.canSendMail() {
+            do {
+                let fileURL = StorageController.shared.CSVFileURL
+                let data = try Data(contentsOf: fileURL)
+                let mailViewController = MFMailComposeViewController()
+                mailViewController.mailComposeDelegate = self
+                mailViewController.setSubject("ZOTTZ OT Data")
+                mailViewController.addAttachmentData(data, mimeType: "text/plain", fileName: fileURL.lastPathComponent)
+                present(mailViewController, animated: true)
+            } catch {
+                print("Couldn't initialize data")
             }
-
+        } else {
+            print("Mailing not supported")
         }
     }
 
@@ -135,6 +136,7 @@ class FormTableViewController: UITableViewController {
                     timer.invalidate()
                     self?.isTimerRunning = false
                     self?.startTimerButton.alpha = 1.0
+                    self?.saveDataInCSVStorage()
                 }
             }
         }
