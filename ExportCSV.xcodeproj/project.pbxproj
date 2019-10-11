@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		AF3B85FB235055DE00C03868 /* FormTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3B85FA235055DE00C03868 /* FormTableViewController.swift */; };
 		AF4329AF234F25E1003AF195 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4329AE234F25E1003AF195 /* AppDelegate.swift */; };
-		AF4329B1234F25E1003AF195 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4329B0234F25E1003AF195 /* SceneDelegate.swift */; };
 		AF4329B6234F25E1003AF195 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF4329B4234F25E1003AF195 /* Main.storyboard */; };
 		AF4329B8234F25E3003AF195 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF4329B7234F25E3003AF195 /* Assets.xcassets */; };
 		AF4329BB234F25E3003AF195 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF4329B9234F25E3003AF195 /* LaunchScreen.storyboard */; };
@@ -20,7 +19,6 @@
 		AF3B85FA235055DE00C03868 /* FormTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTableViewController.swift; sourceTree = "<group>"; };
 		AF4329AB234F25E1003AF195 /* ExportCSV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExportCSV.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF4329AE234F25E1003AF195 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		AF4329B0234F25E1003AF195 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		AF4329B5234F25E1003AF195 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AF4329B7234F25E3003AF195 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AF4329BA234F25E3003AF195 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -59,7 +57,6 @@
 			isa = PBXGroup;
 			children = (
 				AF4329AE234F25E1003AF195 /* AppDelegate.swift */,
-				AF4329B0234F25E1003AF195 /* SceneDelegate.swift */,
 				AF3B85FA235055DE00C03868 /* FormTableViewController.swift */,
 				AF4329C2234F2659003AF195 /* StorageController.swift */,
 				AF4329B4234F25E1003AF195 /* Main.storyboard */,
@@ -143,7 +140,6 @@
 			files = (
 				AF3B85FB235055DE00C03868 /* FormTableViewController.swift in Sources */,
 				AF4329AF234F25E1003AF195 /* AppDelegate.swift in Sources */,
-				AF4329B1234F25E1003AF195 /* SceneDelegate.swift in Sources */,
 				AF4329C3234F2659003AF195 /* StorageController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -220,7 +216,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -274,7 +270,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

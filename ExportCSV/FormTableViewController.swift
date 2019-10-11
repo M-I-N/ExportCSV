@@ -67,7 +67,6 @@ class FormTableViewController: UITableViewController {
                     let mailViewController = MFMailComposeViewController()
                     mailViewController.mailComposeDelegate = self
                     mailViewController.setSubject("ZOTTZ OT Data")
-                    mailViewController.setToRecipients(["nil.nayem@gmail.com"])
                     mailViewController.addAttachmentData(data, mimeType: "text/plain", fileName: fileURL.lastPathComponent)
                     present(mailViewController, animated: true)
                 } catch {
