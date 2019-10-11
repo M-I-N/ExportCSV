@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MessageUI
 
 class FormTableViewController: UITableViewController {
 
@@ -58,13 +59,34 @@ class FormTableViewController: UITableViewController {
             print(composedString)
 
             StorageController.shared.addOrMergeIntoCSVStorage(string: composedString)   //FIXME: This should be done when saving is needed
-            let files = [StorageController.shared.CSVFileURL]
-            let activityViewController = UIActivityViewController(activityItems: files, applicationActivities: nil)
-            present(activityViewController, animated: true, completion: nil)
+
+            if MFMailComposeViewController.canSendMail() {
+                do {
+                    let fileURL = StorageController.shared.CSVFileURL
+                    let data = try Data(contentsOf: fileURL)
+                    let mailViewController = MFMailComposeViewController()
+                    mailViewController.mailComposeDelegate = self
+                    mailViewController.setSubject("ZOTTZ OT Data")
+                    mailViewController.setToRecipients(["nil.nayem@gmail.com"])
+                    mailViewController.addAttachmentData(data, mimeType: "text/plain", fileName: fileURL.lastPathComponent)
+                    present(mailViewController, animated: true)
+                } catch {
+                    print("Couldn't initialize data")
+                }
+            } else {
+                print("Mailing not supported")
+            }
+
         }
     }
 
 
+}
+
+extension FormTableViewController: MFMailComposeViewControllerDelegate {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true)
+    }
 }
 
 extension Double {
