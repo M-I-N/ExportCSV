@@ -20,23 +20,60 @@ class FormTableViewController: UITableViewController {
     @IBOutlet weak var buttonValueLabel: UILabel!
     @IBOutlet weak var dateValueLabel: UILabel!
     @IBOutlet weak var timerValueLabel: UILabel!
-
+    @IBOutlet weak var startTimerButton: UIButton!
+    
+    // MARK: Steppers
+    @IBOutlet weak var ageStepper: UIStepper!
+    @IBOutlet weak var scissorStepper: UIStepper!
+    @IBOutlet weak var pencilStepper: UIStepper!
+    @IBOutlet weak var pincherStepper: UIStepper!
+    @IBOutlet weak var buttonStepper: UIStepper!
+    @IBOutlet weak var timerStepper: UIStepper!
+    
     private var dateFormatter: DateFormatter {
         let dateFormatter = DateFormatter()
 //        dateFormatter.dateStyle = .medium
         dateFormatter.dateFormat = "dd-MMM-yyyy"
         return dateFormatter
     }
+    private var _isTimerRunning = false
+    private var isTimerRunning = false {
+        didSet {
+            _isTimerRunning = isTimerRunning
+            if isTimerRunning {
+                shareButton.isEnabled = false
+                nameTextField.isEnabled = false; nameTextField.alpha = 0.2
+                ageStepper.isEnabled = false; ageStepper.alpha = 0.2
+                scissorStepper.isEnabled = true; scissorStepper.alpha = 1.0
+                pencilStepper.isEnabled = true; pencilStepper.alpha = 1.0
+                pincherStepper.isEnabled = true; pincherStepper.alpha = 1.0
+                buttonStepper.isEnabled = true; buttonStepper.alpha = 1.0
+                timerStepper.isEnabled = false; timerStepper.alpha = 0.2
+            } else {
+                shareButton.isEnabled = true
+                nameTextField.isEnabled = true; nameTextField.alpha = 1.0
+                ageStepper.isEnabled = true; ageStepper.alpha = 1.0
+                scissorStepper.isEnabled = false; scissorStepper.alpha = 0.2
+                pencilStepper.isEnabled = false; pencilStepper.alpha = 0.2
+                pincherStepper.isEnabled = false; pincherStepper.alpha = 0.2
+                buttonStepper.isEnabled = false; buttonStepper.alpha = 0.2
+                timerStepper.isEnabled = true; timerStepper.alpha = 1.0
+            }
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         nameTextField.delegate = self
         dateValueLabel.text = dateFormatter.string(from: Date())
+        // force set the status of timer running state
+        isTimerRunning = _isTimerRunning
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        shareButton.isEnabled = !(nameTextField.text?.isEmpty ?? true)
+        shareButton.isEnabled = isTimerRunning
+        startTimerButton.isEnabled = !(nameTextField.text?.isEmpty ?? true)
     }
 
     @IBAction func ageStepperValueDidChange(_ sender: UIStepper) {
@@ -86,7 +123,23 @@ class FormTableViewController: UITableViewController {
         }
     }
 
-
+    @IBAction func startTimerButtonDidTap(_ sender: UIButton) {
+        if !isTimerRunning {
+            guard let allowedTime = timerValueLabel.text, let allowedElapsedTime = Int(allowedTime) else { return }
+            isTimerRunning = true
+            startTimerButton.alpha = 0.2
+            var timeElapsed = 0
+            Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] timer in
+                timeElapsed += 1
+                if timeElapsed == allowedElapsedTime {
+                    timer.invalidate()
+                    self?.isTimerRunning = false
+                    self?.startTimerButton.alpha = 1.0
+                }
+            }
+        }
+    }
+    
 }
 
 extension FormTableViewController: MFMailComposeViewControllerDelegate {
@@ -100,7 +153,7 @@ extension FormTableViewController: UITextFieldDelegate {
         //Make sure this method is being called
         guard textField == nameTextField else { return true }
         let newLength = (textField.text?.count ?? 0) - range.length + string.count
-        shareButton.isEnabled = newLength > 0
+        startTimerButton.isEnabled = newLength > 0
         return true
     }
 }

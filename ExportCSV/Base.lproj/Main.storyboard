@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4ye-nz-1aB">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4ye-nz-1aB">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -318,13 +318,13 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="60" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gvt-vH-Fk2">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gvt-vH-Fk2">
                                                             <rect key="frame" x="76" y="0.0" width="196" height="38"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="60" minimumValue="60" maximumValue="300" stepValue="60" translatesAutoresizingMaskIntoConstraints="NO" id="IKU-wb-a31">
+                                                        <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minimumValue="10" maximumValue="300" stepValue="60" translatesAutoresizingMaskIntoConstraints="NO" id="IKU-wb-a31">
                                                             <rect key="frame" x="288" y="0.0" width="94" height="38"/>
                                                             <connections>
                                                                 <action selector="timerStepperValueDidChange:" destination="x9L-SG-hxG" eventType="valueChanged" id="or4-SN-VO2"/>
@@ -354,6 +354,12 @@
                                                     <state key="normal" title="Start Timer">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
+                                                    <state key="disabled">
+                                                        <color key="titleColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="startTimerButtonDidTap:" destination="x9L-SG-hxG" eventType="touchUpInside" id="vJ4-gs-ASe"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -380,14 +386,21 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="ageStepper" destination="8yE-hD-H6l" id="PsU-yL-Mfp"/>
                         <outlet property="ageValueLabel" destination="taU-hZ-XkP" id="hRq-Iu-4mf"/>
+                        <outlet property="buttonStepper" destination="u5s-E2-2wS" id="evU-Jy-Qba"/>
                         <outlet property="buttonValueLabel" destination="eQi-pE-xPX" id="0b5-RJ-vwk"/>
                         <outlet property="dateValueLabel" destination="N9c-SC-ThF" id="Esj-Pf-xjU"/>
                         <outlet property="nameTextField" destination="MEa-HQ-Ijz" id="jTk-EH-zPo"/>
+                        <outlet property="pencilStepper" destination="ULl-cS-tOj" id="PgQ-4u-lKg"/>
                         <outlet property="pencilValueLabel" destination="rMW-dR-PQn" id="mh7-l9-zk8"/>
+                        <outlet property="pincherStepper" destination="X0o-yd-3Cc" id="CbC-h4-t2v"/>
                         <outlet property="pincherValueLabel" destination="h8b-ca-6sR" id="T8x-t3-jzs"/>
+                        <outlet property="scissorStepper" destination="m7X-Bc-QBN" id="564-bE-bQj"/>
                         <outlet property="scissorValueLabel" destination="dcH-lk-1Dd" id="7uB-O0-kx3"/>
                         <outlet property="shareButton" destination="RiN-d5-jdF" id="LHf-6n-6gC"/>
+                        <outlet property="startTimerButton" destination="4fL-2U-FLP" id="fN4-3Y-Q6l"/>
+                        <outlet property="timerStepper" destination="IKU-wb-a31" id="gUW-jG-Bi1"/>
                         <outlet property="timerValueLabel" destination="Gvt-vH-Fk2" id="0U4-Ha-f2D"/>
                     </connections>
                 </tableViewController>
