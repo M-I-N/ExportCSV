@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4ye-nz-1aB">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -363,6 +364,7 @@
                         <outlet property="pencilValueLabel" destination="rMW-dR-PQn" id="mh7-l9-zk8"/>
                         <outlet property="pincherValueLabel" destination="h8b-ca-6sR" id="T8x-t3-jzs"/>
                         <outlet property="scissorValueLabel" destination="dcH-lk-1Dd" id="7uB-O0-kx3"/>
+                        <outlet property="shareButton" destination="RiN-d5-jdF" id="LHf-6n-6gC"/>
                         <outlet property="timerValueLabel" destination="Gvt-vH-Fk2" id="0U4-Ha-f2D"/>
                     </connections>
                 </tableViewController>

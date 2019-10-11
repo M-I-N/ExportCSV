@@ -11,6 +11,7 @@ import MessageUI
 
 class FormTableViewController: UITableViewController {
 
+    @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var ageValueLabel: UILabel!
     @IBOutlet weak var scissorValueLabel: UILabel!
@@ -29,7 +30,13 @@ class FormTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        nameTextField.delegate = self
         dateValueLabel.text = dateFormatter.string(from: Date())
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        shareButton.isEnabled = !(nameTextField.text?.isEmpty ?? true)
     }
 
     @IBAction func ageStepperValueDidChange(_ sender: UIStepper) {
@@ -85,6 +92,16 @@ class FormTableViewController: UITableViewController {
 extension FormTableViewController: MFMailComposeViewControllerDelegate {
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true)
+    }
+}
+
+extension FormTableViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        //Make sure this method is being called
+        guard textField == nameTextField else { return true }
+        let newLength = (textField.text?.count ?? 0) - range.length + string.count
+        shareButton.isEnabled = newLength > 0
+        return true
     }
 }
 
