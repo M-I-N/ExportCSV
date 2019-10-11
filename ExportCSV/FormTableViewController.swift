@@ -20,6 +20,7 @@ class FormTableViewController: UITableViewController {
     @IBOutlet weak var buttonValueLabel: UILabel!
     @IBOutlet weak var dateValueLabel: UILabel!
     @IBOutlet weak var timerValueLabel: UILabel!
+    @IBOutlet weak var countDownTimerLabel: UILabel!
     @IBOutlet weak var startTimerButton: UIButton!
     
     // MARK: Steppers
@@ -61,6 +62,12 @@ class FormTableViewController: UITableViewController {
             }
         }
     }
+    
+    private var timeRemaining = 0 {
+        didSet {
+            countDownTimerLabel.text = timeRemaining.formattedAsMinuteSecond
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,22 +84,22 @@ class FormTableViewController: UITableViewController {
     }
 
     @IBAction func ageStepperValueDidChange(_ sender: UIStepper) {
-        ageValueLabel.text = sender.value.formattedForDisplay
+        ageValueLabel.text = sender.value.formattedAsDecimal
     }
     @IBAction func scissorStepperValueDidChange(_ sender: UIStepper) {
-        scissorValueLabel.text = sender.value.formattedForDisplay
+        scissorValueLabel.text = sender.value.formattedAsDecimal
     }
     @IBAction func pencilStepperValueDidChange(_ sender: UIStepper) {
-        pencilValueLabel.text = sender.value.formattedForDisplay
+        pencilValueLabel.text = sender.value.formattedAsDecimal
     }
     @IBAction func pincherStepperValueDidChange(_ sender: UIStepper) {
-        pincherValueLabel.text = sender.value.formattedForDisplay
+        pincherValueLabel.text = sender.value.formattedAsDecimal
     }
     @IBAction func buttonStepperValueDidChange(_ sender: UIStepper) {
-        buttonValueLabel.text = sender.value.formattedForDisplay
+        buttonValueLabel.text = sender.value.formattedAsDecimal
     }
     @IBAction func timerStepperValueDidChange(_ sender: UIStepper) {
-        timerValueLabel.text = sender.value.formattedForDisplay
+        timerValueLabel.text = sender.value.formattedAsDecimal
     }
 
     private func saveDataInCSVStorage() {
@@ -132,6 +139,7 @@ class FormTableViewController: UITableViewController {
             var timeElapsed = 0
             Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] timer in
                 timeElapsed += 1
+                self?.timeRemaining = allowedElapsedTime - timeElapsed
                 if timeElapsed == allowedElapsedTime {
                     timer.invalidate()
                     self?.isTimerRunning = false
@@ -161,7 +169,15 @@ extension FormTableViewController: UITextFieldDelegate {
 }
 
 extension Double {
-    var formattedForDisplay: String {
+    var formattedAsDecimal: String {
         NumberFormatter.localizedString(from: NSNumber(value:self), number: .decimal)
+    }
+}
+
+extension Int {
+    var formattedAsMinuteSecond: String {
+        let minutes = self / 60 % 60
+        let seconds = self % 60
+        return String(format: "%02i:%02i", minutes, seconds)
     }
 }
